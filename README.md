@@ -1,0 +1,2 @@
+# laravel-docker
+laravelのプロジェクトをdockerの開発環境下で作成して、laravelの実践について学習したものになります。
