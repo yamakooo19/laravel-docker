@@ -18,3 +18,6 @@ Route::get('/', function () {
 Route::get('/hello','HelloController@index')->name('hello');
 Route::get('/hello/other','HelloController@other');
 
+//whereによる正規表現ルート
+//下記ではhelloアクションに「id」というパラメータを用意し、そこに数字だけが利用できるようにしています。
+Route::get('/hello/{id}','HelloController@index')->where('id','[0-9]+');
