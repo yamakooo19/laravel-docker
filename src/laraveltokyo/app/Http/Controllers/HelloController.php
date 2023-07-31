@@ -13,13 +13,11 @@ class HelloController extends Controller
     }
     public function index()
     {
-        $sample_msg = config('sample.message');
-        $sample_data = config('sample.data');
-        $test = 'test';
+        $sample_msg = env('SAMPLE_MESSAGE');
+        $sample_data = env('SAMPLE_DATA');
         $data = [
             'msg' => $sample_msg,
-            'data' => $sample_data,
-            'test' => $test,
+            'data' => explode(',', $sample_data),
         ];
         return view('hello.index', $data);
     }
