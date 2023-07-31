@@ -7,18 +7,15 @@ use App\Person;
 
 class HelloController extends Controller
 {
-    public function index($person)
+    public function index()
     {
+        $sample_msg = config('sample.message');
+        $sample_data = config('sample.data');
+        $test = 'test';
         $data = [
-            'msg' => $person,
-        ];
-        return view('hello.index', $data);
-    }
-
-    public function other(Request $request)
-    {
-        $data = [
-            'msg' => $request->bye,
+            'msg' => $sample_msg,
+            'data' => $sample_data,
+            'test' => $test,
         ];
         return view('hello.index', $data);
     }
