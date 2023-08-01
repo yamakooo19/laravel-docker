@@ -25,6 +25,8 @@
             <li>{{ $item }}</li>
         @endforeach
     </ul>
+
+    <p><a href="/hello/other">download</a></p>
 </body>
 
 </html>
