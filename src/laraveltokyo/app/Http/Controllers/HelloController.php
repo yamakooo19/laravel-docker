@@ -12,12 +12,12 @@ class HelloController extends Controller
     private $fname;
     function __construct()
     {
-        $this->fname = 'sample.txt';
+        $this->fname = 'hello.txt';
     }
     public function index()
     {
-        $sample_msg = $this->fname;
-        $sample_data = Storage::get($this->fname);
+        $sample_msg = Storage::disk('public')->url($this->fname);
+        $sample_data = Storage::disk('public')->get($this->fname);
         $data = [
             'msg' => $sample_msg,
             'data' => explode(PHP_EOL, $sample_data)
@@ -27,14 +27,7 @@ class HelloController extends Controller
 
     public function other($msg)
     {
-        // $data = Storage::get($this->fname) . PHP_EOL . $msg;
-        // Storage::put($this->fname, $data);
-        // return redirect()->route('hello');
-
-        //上記と実装している処理は同じこと
-        //ファイルの末尾に追加するStorage::appendの他に
-        //ファイルの先頭に追加するStorage::prependがある。
-        Storage::append($this->fname, $msg);
+        Storage::disk('public')->prepend($this->fname, $msg);
         return redirect()->route('hello');
     }
 }
