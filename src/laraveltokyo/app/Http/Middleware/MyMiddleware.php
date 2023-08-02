@@ -25,6 +25,13 @@ class MyMiddleware
         ];
         $request->merge($merge_data);
 
-        return $next($request);
+        $response = $next($request);
+
+        $content = $response->content();
+        $content .= '<style> body {background-color:#eef; } p { font-size:18pt; } li { color: red; font-weight:bold; }</style>';
+
+        $response->setContent($content);
+
+        return $response;
     }
 }
