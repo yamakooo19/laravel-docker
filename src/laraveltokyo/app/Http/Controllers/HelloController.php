@@ -17,7 +17,7 @@ class HelloController extends Controller
     {
         $ids = explode(',', $id);
         $msg = 'get people.';
-        $result = DB::table('people')->whereBetween('id',$ids)->get();
+        $result = DB::table('people')->whereIn('id',$ids)->get();
 
         $data = [
             'msg' => $msg,
