@@ -4,15 +4,17 @@ namespace App\MyClasses;
 
 class MyService
 {
-    private $myservice;
+    private $serial;
+    private $id = -1;
+    private $msg = 'no id ...';
+    private $data = ['Hello', 'Welcome', 'Bye'];
 
-    private function __construct()
-    { }
-
-    public static getInstance()
+    function __construct()
     {
-        return self::$myservice ?? self::$myservice = new MyService();
+        $this->serial = rand();
+        echo "「" . $this->serial . "」";
     }
+
 
     public function setId($id)
     {
