@@ -10,8 +10,9 @@ use App\MyClasses\MyService;
 
 class HelloController extends Controller
 {
-    public function index(MyService $myservice)
+    public function index()
     {
+        $myservice = app('App\MyClasses\MyService');
         $data = [
             'msg' => $myservice->say(),
             'data' => $myservice->data(),
