@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\MyClasses\MyService;
+use App\MyClasses\PowerMyService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,9 +24,5 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {
-        config([
-            'sample.data' => ['こんにちは', 'どうも', 'さようなら']
-        ]);
-    }
+    { }
 }

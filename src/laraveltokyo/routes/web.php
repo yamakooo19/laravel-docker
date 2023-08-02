@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\HelloController;
 use App\Http\Middleware\HelloMiddleware;
 use App\Models\Person;
 
@@ -18,5 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hello/other', 'HelloController@other');
-Route::get('/hello', 'HelloController@index')->name('hello');
+Route::get('/hello', 'HelloController@index')->middleware('MyMW');
+
+Route::get('/hello/{id}', 'HelloController@index')->middleware(App\Http\Middleware\MyMiddleware::class);
