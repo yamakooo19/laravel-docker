@@ -2,19 +2,15 @@
 
 namespace App\MyClasses;
 
-class MyService
+class MyService implements MyServiceInterface
 {
     private $serial;
     private $id = -1;
     private $msg = 'no id ...';
     private $data = ['Hello', 'Welcome', 'Bye'];
 
-    function __construct(int $id)
-    {
-        $this->setId($id);
-        $this->serial = rand();
-        echo "「" . $this->serial . "」";
-    }
+    function __construct()
+    { }
 
 
     public function setId($id)
