@@ -22,13 +22,17 @@
 <body>
     <h1>Hello/Index</h1>
     <p>{{ $msg }}</p>
-    <ol>
+    <table border="1">
         @foreach ($data as $item)
-            <li>{{ $item->name }} [{{ $item->mail }},{{ $item->age }}]</li>
+            <tr>
+                <th>{{ $item->id }}</th>
+                <th>{{ $item->name }}</th>
+                <th>{{ $item->mail }}</th>
+                <th>{{ $item->age }}</th>
+            </tr>
         @endforeach
-    </ol>
+    </table>
     <hr>
-    {!! $paginator->link() !!}
 </body>
 
 </html>
