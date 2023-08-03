@@ -15,20 +15,33 @@ use Illuminate\Support\Facades\DB;
 
 class HelloController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $msg = 'show people record.';
-
-        $re = Person::get();
-        $fields = Person::get()->fields();
-
+        $result = Person::get();
+        Person::get(['*'])->searchable();
         $data = [
-            'msg' => implode(',',$fields),
-            'data' => $re,
+            'input' => '',
+            'msg' => $msg,
+            'data' => $result,
         ];
 
         return view('hello.index', $data);
 
+    }
+
+    public function send(Request $request)
+    {
+        $input = $request->input('find');
+        $msg = 'search: ' .$input;
+        $result = Person::search($input)->get();
+
+        $data = [
+            'input' => $input,
+            'msg' => $msg,
+            'data' => $result,
+        ];
+        return view('hello.index', $data);
     }
 
     public function save($id, $name)
