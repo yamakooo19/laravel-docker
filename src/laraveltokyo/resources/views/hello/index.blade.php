@@ -19,7 +19,7 @@
     </style>
 
     <script>
-        function doAcction() {
+        function doAction() {
             var id = document.querySelector('#id').value;
             var xhr = new XMLHttpRequest();
             xhr.open('GET', '/hello/json/' + id, true);
