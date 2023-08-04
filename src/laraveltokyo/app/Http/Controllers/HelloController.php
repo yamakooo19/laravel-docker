@@ -12,14 +12,20 @@ use App\MyClasses\MyServiceInterface;
 use App\Facades\MyService;
 use Illuminate\Support\Facades\DB;
 
+use \App\Jobs\MyJob;
+
 
 class HelloController extends Controller
 {
-    public function index()
+    public function index(Person $person = null)
     {
+        if($person!= null)
+        {
+            MyJob::dispatch($person);
+        }
+
         $msg = 'show people record.';
         $result = Person::get();
-        Person::get(['*'])->searchable();
         $data = [
             'input' => '',
             'msg' => $msg,
