@@ -21,7 +21,7 @@ class HelloController extends Controller
     {
         if($person!= null)
         {
-            MyJob::dispatch($person);
+            MyJob::dispatch($person)->delay(now()->addMinute(5));
         }
 
         $msg = 'show people record.';
