@@ -12,6 +12,11 @@ use App\MyClasses\MyServiceInterface;
 use App\Facades\MyService;
 use Illuminate\Support\Facades\DB;
 
+use \App\Jobs\MyJob;
+
+use App\Events\PersonEvent;
+
+
 
 class HelloController extends Controller
 {
@@ -19,7 +24,6 @@ class HelloController extends Controller
     {
         $msg = 'show people record.';
         $result = Person::get();
-        Person::get(['*'])->searchable();
         $data = [
             'input' => '',
             'msg' => $msg,
@@ -32,16 +36,17 @@ class HelloController extends Controller
 
     public function send(Request $request)
     {
-        $input = $request->input('find');
-        $msg = 'search: ' .$input;
-        $result = Person::search($input)->get();
+        $id = $request->input('id');
+        $person = Person::find($id);
 
+        event(new PersonEvent($person));
         $data = [
-            'input' => $input,
-            'msg' => $msg,
-            'data' => $result,
+            'input' => '',
+            'msg' => 'id='. $id,
+            'data' => [$person],
         ];
-        return view('hello.index', $data);
+
+        return view('hello.index',$data);
     }
 
     public function save($id, $name)
